@@ -1,7 +1,7 @@
 Classification System
 
 Data
-- Crud (Create, Read, Update, and Delete)
+- Crud
 -- Model1
 -- Model2
 
@@ -20,10 +20,10 @@ POST website.com/api/define-model
   - Year
   
 POST website.com/api/define-model
- - name: Numbers
+ - name: Images
  - attributes:
   - Pixels[]
-  - Number
+  - tag: "1", "Cars:F150"
 
 # Add data to the source
 POST website.com/api/model/<name>

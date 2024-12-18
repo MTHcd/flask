@@ -1,12 +1,17 @@
-from flask import Flask
+from flask import Flask, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
+
+class Base(DeclarativeBase):
+  pass
 
 # Steps:
-# 1. Design and implement a database (contains CRUD)
+# 1. Design and implement a database
 #   - SQLite, MySql, Maria
 #   - SQLAlchemy
-# 2. Project Design
-# https://github.com/chiphuyen/dmls-book
-# 3. Connect Database to Flask
+# 2. Connect Database to Flask
+# ----------
+# 3. Project Design
 # 4. Add in Machine Learning
 # 5. Connect Machine Learning to Flask
 # 6. ???
@@ -14,11 +19,15 @@ from flask import Flask
 
 # Generating a flask App
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.sqlite"
+
+db = SQLAlchemy(model_class=Base)
+db.init_app(app)
 
 # Decorator that lets flask know what url path this function requires
 @app.route("/")
 def index():
-  return "This is a model" # The returned value gets sent directly
+  return jsonify({ "message": "This is a test" }) # The returned value gets sent directly
 
 # HTTP Methods
 # Get : http://server.com/path/to/url?arg=1&arg=2
